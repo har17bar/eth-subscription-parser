@@ -4,18 +4,47 @@ A simple Go-based service to track Ethereum transactions involving specific addr
 
 ## Features
 
-- Subscribe to Ethereum addresses
-- Track transactions in new blocks
-- Fetch transactions for a given address
+* Subscribe to Ethereum addresses
+* Track transactions in new blocks
+* Fetch transactions for a given address
+* Get the latest processed block
 
 ## API Endpoints
 
 ### Subscribe to an address
 
 **POST** `/subscribe`
+**Body:**
 
-Body:
 ```json
 {
   "address": "0xYourEthereumAddress"
 }
+```
+
+### Get transactions for an address
+
+**GET** `/transactions?address=0xYourEthereumAddress`
+**Response:**
+
+```json
+[
+  {
+    "from": "0x...",
+    "to": "0x...",
+    "value": "1000000000000000000",
+    "block": 19000000
+  }
+]
+```
+
+### Get the latest processed block
+
+**GET** `/current`
+**Response:**
+
+```json
+{
+  "latest_block": 19000021
+}
+```
